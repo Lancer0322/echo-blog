@@ -1,0 +1,82 @@
+* {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  background-color: Canvas;
+  color: CanvasText;
+  color-scheme: dark light;
+}
+
+img {
+  max-width: 100%;
+}
+
+#meta {
+  width: 100%;
+  max-width: 500px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+#logo {
+  width: 100px;
+  height: 100px;
+  margin-inline: auto;
+}
+
+#start {
+  color: #369068;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0 18px;
+  margin: 15px auto;
+  line-height: 1.5em;
+  border: 2px solid #369068;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+#form {
+  width: 100%;
+  max-width: 250px;
+  margin: 100px auto 0;
+}
+
+#title {
+  text-align: center;
+  color: #369068;
+}
+
+label {
+  display: block;
+  margin: 10px 0 8px;
+  min-width: 100px;
+}
+
+input {
+  box-sizing: border-box;
+  padding: 10px 8px;
+  width: 100%;
+  font-size: 16px;
+  outline-color: #369068;
+  border: 1px solid #369068;
+  border-radius: 5px;
+}
+
+#msg {
+  margin: 15px 0;
+}
+
+#submit {
+  display: block;
+  text-decoration: none;
+  max-width: 125px;
+  line-height: .2em;
+  text-align: center;
+  margin: 20px auto;
+  color: #369068;
+  border: 1px solid #369068;
+  border-radius: 8px;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>提交图片</title>
+</head>
+
+<body>
+  <img src="" alt="" srcset="">
+  <input id="name" type="text" name="album" value="测试">
+  <input id="album" type="text" name="album" value="日常">
+  <input type="file" id="imgurl" capture="camera" `="image/png,image/jpg,image/gif,image/jpeg,image/webp"
+    onchange="getFile()" />
+  <div id="upImage" onclick="upImage()">上传</div>
+  <script>
+    let imgData = ""
+    function getFile() {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        imgData = e.target.result
+        // console.log(imgData);
+        // console.log(reader.result);  //或者 e.target.result都是一样的，都是base64码
+      }
+      reader.readAsDataURL(document.getElementById("imgurl").files[0])
+    }
+
+    async function upImage() {
+      const imgName = document.getElementById("imgName")
+      const data = {
+        name: JSON.stringify(new Date().getTime()),
+        album: document.getElementById("album").value,
+        imgData: imgData,
+      }
+      let body = JSON.stringify({ type: 'save_img', data })
+      try {
+        console.log(body);
+        const result = await fetch("/", { method: 'POST', body });
+        console.log(result);
+      } catch (error) {
+        console.log(error);
+      }
+
+    }
+
+
+  </script>
+
+  <!-- <input id="fileInp" type="file" accept="image/png, image/jpg">
+  <div class="avator">
+    <img id="avator" src="/asset/favicon.svg" alt="">
+  </div>
+  <script>
+    const fileInp = document.getElementById('fileInp')
+    const avator = document.getElementById("avator")
+    avator.onclick = function () {
+      console.log(fileInp.value);
+    }
+  </script> -->
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+{
+  "name": "echo-server",
+  "version": "1.0.0",
+  "description": "A simple, safe, free blog system .",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./index.js --host"
+  },
+  "keywords": [
+    "博客系统",
+    "免费",
+    "安全",
+    "vercel",
+    "mongodb",
+    "sql"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lorre0322/echo-server"
+  },
+  "author": "Lorre0322",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/node": "^2.14.4",
+    "app-notify": "^2.3.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.3",
+    "fs": "^0.0.1-security",
+    "mongodb": "^5.5.0",
+    "path": "^0.12.7"
+  }
+}

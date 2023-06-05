@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/asset/favicon.svg" type="image/x-icon">
+  <title>上传图片</title>
+  <link rel="stylesheet" href="/asset/style.css">
+</head>
+
+<body>
+  <div id="form">
+    <img id="imgShow" src="" alt="" srcset="">
+    <label for="imgName">重命名 :</label>
+    <input id="imgName" value="测试" type="text">
+    <label for="imgAlbum">相册名 :</label>
+    <input id="imgAlbum" value="日常" type="text">
+    <label for="imgFile">文件 :</label>
+    <input id="imgFile" type="file" onchange="getFile()">
+    <div id="msg"></div>
+
+    <span href="" id="submit" onclick="submit()">
+      <h4>😎 Submit</h4>
+    </span>
+  </div>
+
+  <script>
+    let imgData = "";
+    function getFile() {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        imgData = e.target.result;
+        // console.log(imgData);
+        //或者 e.target.result都是一样的，都是base64码
+        // console.log(reader.result);  
+      }
+      reader.readAsDataURL(document.getElementById("imgFile").files[0]);
+    }
+    async function submit(params) {
+      const name = document.getElementById("imgName").value;
+      const album = document.getElementById("imgAlbum").value;
+      const data = {
+        "name": name || JSON.stringify(new Date().getTime()),
+        album,
+        imgData
+      }
+      let body = JSON.stringify({ type: 'save_img', data });
+
+      console.log(JSON.parse(body));
+      try {
+        const res = await fetch("/", { method: 'POST', body });
+        const result = await res.json();
+        console.log(result);
+        if (result && result.data.msg === 'success') {
+          document.getElementById("imgShow").src = "/album/" + name + ".jpg";
+          msg.innerText = "🤩 Create success.";
+        } else {
+          msg.innerText = "😮‍💨 Create failed.";
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  </script>
+</body>
+
+</html>

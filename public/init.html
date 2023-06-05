@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/asset/favicon.svg" type="image/x-icon">
+  <link rel="stylesheet" href="/asset/style.css">
+  <title>注册 | Echo Blog System</title>
+</head>
+
+<body>
+  <div id="form">
+    <h2 id="title">Create your admin</h2>
+    <label for="name">name :</label>
+    <input id="name" placeholder="name" type="text" value="lorre"><br>
+    <label for="name">password :</label>
+    <input id="password" placeholder="password" type="password" value="wasd33259181"><br>
+    <label for="name">email :</label>
+    <input id="email" placeholder="email" type="email" value="693739563@qq.com"><br>
+    <div id="msg"></div>
+    <span href="" id="submit" onclick="FormSubmit()">
+      <h4>😎 Submit</h4>
+    </span>
+  </div>
+  <script>
+    async function FormSubmit() {
+      try {
+        const name = document.getElementById("name").value;
+        const password = document.getElementById("password").value;
+        const email = document.getElementById("email").value.toLowerCase();
+        const body = JSON.stringify({ type: "INIT", data: { name, password, email } });
+        const msg = document.getElementById("msg");
+        const res = await fetch("./", { method: 'POST', body });
+        const result = await res.json();
+        console.log(body);
+        console.log(result);
+        if (result && result.data.msg === 'success') {
+          msg.innerText = "🤩 Create success.";
+        } else {
+          msg.innerText = "😮‍💨 Create failed.";
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+  </script>
+</body>
+
+</html>

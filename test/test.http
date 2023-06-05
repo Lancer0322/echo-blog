@@ -1,0 +1,12 @@
+POST http://localhost:4000/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "type": "save_mumbler",
+  "data":{
+    "id":"",
+    "date":"2023-06-02 21:19",
+    "in_md":"## 测试",
+    "in_html":"<h2>测试</h2>"
+  }
+}
